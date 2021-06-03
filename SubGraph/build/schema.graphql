@@ -1,0 +1,19 @@
+type Requests @entity {
+  id: ID!
+  lender: Bytes
+  borrower: Bytes!
+  amount: BigDecimal!
+  duration: BigDecimal!
+  startingTime: BigDecimal
+  status: String!
+}
+
+type Borrow @entity{
+  id: ID!
+  lender: Bytes
+  borrower: Bytes!
+  amount: BigDecimal!
+  duration: BigDecimal!
+  startingTime: BigDecimal
+  status: String!
+}

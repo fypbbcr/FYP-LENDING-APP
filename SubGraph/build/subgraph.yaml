@@ -1,0 +1,32 @@
+specVersion: 0.0.2
+description: Gravatar for Ethereum
+repository: https://github.com/FYP
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Lending
+    network: rinkeby
+    source:
+      address: "0x7F57F03A23945B0fd255D0f02477Bf3b0ddc1144"
+      abi: Lending
+      startBlock: 8695194
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Requests
+      abis:
+        - name: Lending
+          file: Lending/abis/Lending.json
+      eventHandlers:
+        - event: BorrowerRequestAdded(bytes32,address,uint256,uint256)
+          handler: handleRequestAdded
+        - event: BorrowerRequestAccepted(bytes32,address,uint256)
+          handler: handleRequestAccepted
+        - event: BorrowerRequestReported(bytes32)
+          handler: handleRequestReported
+        - event: BorrowerRequestCompleted(bytes32)
+          handler: handleRequestCompleted
+      file: Lending/Lending.wasm
